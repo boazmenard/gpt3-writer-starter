@@ -30,18 +30,25 @@ const Home = () => {
     setUserInput(event.target.value);
   }
 
+  const copyResponseToClipboard = () => {
+    const text = document.getElementById("api-output");
+    navigator.clipboard.writeText(text.value);
+
+    alert("Copied to clipboard!")
+  }
+
   return (
     <div className="root">
       <Head>
-        <title>GPT-3 Writer | buildspace</title>
+        <title>TrainAnimeAI | bomenardco</title>
       </Head>
       <div className="container">
         <div className="header">
           <div className="header-title">
-            <h1>Train Like Your Favorite Anime Character</h1>
+            <h1>TrainAnimeAI</h1>
           </div>
           <div className="header-subtitle">
-            <h2>Use the power of anime to achieve fitness immortality.</h2>
+            <h2>Train like your favorite anime character. Use the power of anime to achieve fitness immortality.</h2>
           </div>
         </div>
         {/* Add this code here*/}
@@ -50,10 +57,6 @@ const Home = () => {
             <h2>Anime Character:</h2>
           </div>
           <textarea placeholder="start typing here" className="prompt-box" value={userInput} onChange={onUserChangeInput}/>
-          <div className="header-subtitle">
-            <h2>Anime Title:</h2>
-          </div>
-          <textarea placeholder="start typing here" className='prompt-box'/>
           {/* New code I added here */}
           <div className="prompt-buttons">
             <a className={isGenerating ? 'generate-button loading' : "generate-button"} onClick={callGenerateEndpoint}>
@@ -69,9 +72,16 @@ const Home = () => {
               <div className="output-header">
                 <h3>Output</h3>
               </div>
+              <div>
+                <a className="generate-button" onClick={copyResponseToClipboard}>
+                  <div className="generate">
+                    <p>Copy to clipboard</p>
+                  </div>
+                </a>
+              </div>
             </div>
             <div className="output-content">
-              <p>{apiOutput}</p>
+              <p id='api-output'>{apiOutput}</p>
             </div>
           </div>
         )}
@@ -79,13 +89,12 @@ const Home = () => {
       </div>
       <div className="badge-container grow">
         <a
-          href="https://buildspace.so/builds/ai-writer"
+          href="https://www.buymeacoffee.com/bomenardco"
           target="_blank"
           rel="noreferrer"
         >
           <div className="badge">
-            <Image src={buildspaceLogo} alt="buildspace logo" />
-            <p>build with buildspace</p>
+            <p>buy me a coffee</p>
           </div>
         </a>
       </div>
